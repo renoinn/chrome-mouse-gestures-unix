@@ -6,7 +6,7 @@
 	const LEFT = 0;
 	const RIGHT = 2;
 	// misc
-	const SHIFT_MIN = 50;
+	const SHIFT_MIN = 30;
 	// canvas
 	const STROKE_STYLE = 'red';
 	const CANVAS_DETTACH_DELAY = 100;
@@ -50,9 +50,25 @@
 				chrome.runtime.sendMessage({ action: 'close-current-tab' });
 			},
 
-			'left-up'()
+			'down-left'()
 			{
 				chrome.runtime.sendMessage({ action: 'reopen-closed-tab' });
+			},
+			'left'()
+			{
+                window.history.back();
+			},
+			'right'()
+			{
+                window.history.forward();
+			},
+			'up'()
+			{
+                window.scrollTo(0, 0);
+			},
+			'down'()
+			{
+                window.scrollTo(0, window.document.body.clientHeight);
 			},
 
 			// reload tab

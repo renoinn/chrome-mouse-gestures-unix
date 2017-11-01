@@ -19,7 +19,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
 
 const tabs = new Map();
 let closedTabs = [];
-const MAX_HISTORY = 10;
+const MAX_HISTORY = 20;
+
+chrome.tabs.getAllInWindow(data => {
+  for (var key in data) {
+	// TODO was machen, wenn key == undefined???
+    tabs.set(data[key].id, data[key].url) = data[key];
+  }
+});
 
 chrome.tabs.onRemoved.addListener((tabId, info) =>
 	{
